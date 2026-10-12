@@ -23,7 +23,7 @@ A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https:
 
 | 主界面 Main Window | 图标 Icon |
 | --- | --- |
-| ![main](docs/screenshots/main-window.png) | ![icon](docs/screenshots/icon.png) |
+| ![main](docs/screenshots/main-window.png) | 
 
 ## 🚀 Quick Start
 
