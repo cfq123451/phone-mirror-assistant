@@ -1,4 +1,4 @@
-# 生成应用图标：assets\手机投屏.ico（PNG 帧多尺寸 256/48/32/16）+ assets\手机投屏图标预览.png（512）
+﻿# 生成应用图标：assets\手机投屏.ico（PNG 帧多尺寸 256/48/32/16）+ assets\手机投屏图标预览.png（512）
 # 说明：PNG 帧 ICO 用于 exe 资源、窗口标题栏、托盘均正常；
 #       但 GDI+ 的 Icon.ToBitmap() 不兼容 PNG 帧（会抛异常），程序内大图标请引用预览 PNG。
 # 用法：powershell -ExecutionPolicy Bypass -File scripts\make-icon.ps1

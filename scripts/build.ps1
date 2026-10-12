@@ -1,4 +1,4 @@
-# 构建脚本：编译 PhoneMirror.cs 并组装出可运行的 dist\ 目录
+﻿# 构建脚本：编译 PhoneMirror.cs 并组装出可运行的 dist\ 目录
 # 用法：powershell -ExecutionPolicy Bypass -File scripts\build.ps1
 $ErrorActionPreference = 'Stop'
 
@@ -31,8 +31,9 @@ if (-not (Test-Path (Join-Path $scrcpyDir 'scrcpy.exe'))) {
     $zip = Join-Path $dist $asset.name
     Invoke-WebRequest -Uri $asset.browser_download_url -OutFile $zip -UseBasicParsing -TimeoutSec 300
     Expand-Archive $zip -DestinationPath $dist -Force
-    Get-ChildItem (Join-Path $dist 'scrcpy-win64-*') | Move-Item -Destination $scrcpyDir
+    # 先删除 zip，再仅移动解压出的目录（通配符会同时匹配到 zip 本身）
     Remove-Item $zip -Force
+    Get-ChildItem (Join-Path $dist 'scrcpy-win64-*') -Directory | Move-Item -Destination $scrcpyDir
 }
 Write-Host 'OK: dist\scrcpy'
 
