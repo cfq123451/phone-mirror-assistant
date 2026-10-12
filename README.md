@@ -21,15 +21,15 @@ A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https:
 
 ## 📸 Screenshots
 
-| 主界面 Main Window | 图标 Icon |
+| 主界面 Main Window | 
 | --- | --- |
-| ![main](docs/screenshots/main-window.png) | 
+| ![main](docs/screenshots/main-window.png) | | ![main](docs/screenshots/mainshow.png) |
 
 ## 🚀 Quick Start
 
 1. 下载最新 [Release](https://github.com/cfq123451/phone-mirror-assistant/releases) 的 `手机投屏助手-vX.Y.Z.zip`，解压（已内置 scrcpy 运行时）
-2. 手机：设置 → 关于手机 → 连点「版本号」7 次开启开发者模式 → 打开「USB 调试」
-3. 数据线连接电脑（机箱后置 USB 口），手机上点「允许 USB 调试」
+2. 手机：设置 → 关于手机 → 连点「版本号」7 次开启开发者模式 → 打开「USB 调试」或 「无线调试」
+3. 数据线连接电脑（机箱后置 USB 口），手机上点「允许 USB 调试」或通过无线调试配对电脑
 4. 双击 `手机投屏.exe` —— 自动识别设备并开始投屏
 
 > 注意：电脑连手机热点时多数机型会拒绝「无线调试」，此时 USB 是最稳的方案。
