@@ -22,3 +22,17 @@ jobs:
           name: dist
           path: dist/
           if-no-files-found: error
+
+      - name: Package release zip
+        shell: pwsh
+        run: |
+          $ver = if ($env:GITHUB_REF -match 'refs/tags/v(.+)') { $matches[1] } else { 'dev' }
+          Compress-Archive -Path dist/* -DestinationPath "手机投屏助手-v$ver.zip" -Force
+          Get-ChildItem *.zip | Select-Object Name, Length
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: 手机投屏助手-*.zip
+          generate_release_notes: true

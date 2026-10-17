@@ -13,7 +13,7 @@ A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https:
 ## ✨ Features
 
 - **USB-first auto-connect** —— 数据线插上并授权后自动识别设备、自动投屏；无线调试可作为回退（连接方式：`自动 / 仅 USB / 仅无线`）
-- **Main window UI** —— 启动即显示深色圆角主界面：设备状态卡片、连接方式、窗口参数、一键开始/停止
+- **Main window UI** —— 启动即显示深色圆角主界面：动态设备列表（USB/无线自动识别、连接方式徽章、行内一键投屏）、无线配对/USB 连接引导、一键开始/停止
 - **System tray** —— 关闭窗口驻留托盘，右键菜单可快速操作；单实例保护
 - **Reverse control** —— 鼠标/键盘反控手机，中文输入可用（`--keyboard=uhid`，支持手机 IME）
 - **No phone app required** —— 手机只需开启「USB 调试」/「无线调试」
@@ -21,17 +21,17 @@ A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https:
 
 ## 📸 Screenshots
 
-| 主界面 Main Window | 
+| 主界面 Main Window | 无线配对 Wireless Pair |
 | --- | --- |
-| ![main](docs/screenshots/main-window.png) | | ![main](docs/screenshots/mainshow.png) |
+| ![main](docs/screenshots/main-window.png) | ![pair](docs/screenshots/pair-dialog.png) |
 
 ## 🚀 Quick Start
 
 1. 下载最新 [Release](https://github.com/cfq123451/phone-mirror-assistant/releases) 的 `手机投屏助手-vX.Y.Z.zip`，解压（已内置 scrcpy 运行时）
 2. 手机：设置 → 关于手机 → 连点「版本号」7 次开启开发者模式 → 打开「USB 调试」或 「无线调试」
-3. 数据线连接电脑（机箱后置 USB 口），手机上点「允许 USB 调试」
-4. 通过无线调试配对电脑，CMD窗口输入“ adb pair IP地址:端口号 ” ，然后回车输入6位配对码
-   | ![main](docs/screenshots/phone-wlan.jpg) | | ![main](docs/screenshots/input-cmd.png) |
+3. **USB 投屏**：数据线连接电脑（机箱后置 USB 口），手机上点「允许 USB 调试」，主界面点「USB 连接」自动识别并投屏
+4. **无线投屏**：手机打开「无线调试」→「使用配对码配对设备」，主界面点「无线配对」，填入手机上显示的 IP/端口/6 位配对码，确认后自动配对并投屏
+   | ![main](docs/screenshots/phone-wlan.jpg) | | ![main](docs/screenshots/pair-dialog.png) |
 5. 双击 `手机投屏.exe` —— 自动识别设备并开始投屏
 
 > 注意：电脑连手机热点时多数机型会拒绝「无线调试」，此时 USB 是最稳的方案。
@@ -54,9 +54,9 @@ A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https:
 
 - **开始/停止投屏**：主界面一键控制；启动时若检测到设备会自动投屏（`auto_start`）
 - **窗口参数**：宽度 300~1200、置顶、无边框
-- **连接方式**：
-  - `自动（USB 优先）`：优先 USB 设备，没有则回退无线地址
-  - `仅 USB` / `仅无线`：强制走某一通道（无线需在「无线地址」填 `IP:端口`）
+- **设备列表**：自动识别 USB 与无线设备（连接方式徽章区分），同一台设备 USB/无线同时在线时自动去重；每行右侧「投屏」按钮一键投屏，多设备可同时投屏互不影响
+- **无线配对**：主界面「无线配对」按钮 → 填写手机弹窗中的 IP/端口/6 位配对码 → 后台自动 `adb pair` 配对并投屏
+- **USB 连接**：主界面「USB 连接」按钮 → 自动检测 USB 设备并提示确认投屏；未插线时给出三条排查提示
 - **托盘**：关闭窗口 = 驻留托盘；右键托盘 → 显示主界面 / 开始 / 停止 / 配置手机键盘布局 / 退出
 - **反向打字不出字**：点「配置手机键盘布局」→ 手机端首次选择 `English(US)`，之后中文输入正常
 
