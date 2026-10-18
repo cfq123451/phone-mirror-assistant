@@ -1,7 +1,7 @@
 # Phone Mirror Assistant · 手机投屏助手
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows-blue)]()
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20(ARM64)-blue)]()
 [![Framework](https://img.shields.io/badge/.NET-4.0%2B-purple)]()
 [![scrcpy](https://img.shields.io/badge/scrcpy-4.1-orange)](https://github.com/Genymobile/scrcpy)
 
@@ -18,6 +18,7 @@ A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https:
 - **Reverse control** —— 鼠标/键盘反控手机，中文输入可用（`--keyboard=uhid`，支持手机 IME）
 - **No phone app required** —— 手机只需开启「USB 调试」/「无线调试」
 - **Portable** —— 绿色单目录，双击即用，无需安装
+- **Linux CLI (ARM64)** —— 提供 Linux 命令行版 `phone-mirror.sh`，支持 USB/无线投屏、音频与反向控制，适用于树莓派 / ARM 盒子等设备
 
 ## 📸 Screenshots
 
@@ -35,6 +36,32 @@ A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https:
 5. 双击 `手机投屏.exe` —— 自动识别设备并开始投屏
 
 > 注意：电脑连手机热点时多数机型会拒绝「无线调试」，此时 USB 是最稳的方案。
+
+## 🐧 Linux 版本（ARM64 / x86_64 命令行版）
+
+Windows 版为图形界面；Linux 版为**命令行工具**（同一套 scrcpy 引擎，功能对齐：USB/无线投屏、音频、鼠标键盘反向控制）。
+
+**安装**（Debian/Ubuntu/树莓派 OS，一行搞定）:
+
+```bash
+curl -L -o phone-mirror.tar.gz https://github.com/cfq123451/phone-mirror-assistant/releases/latest/download/phone-mirror-assistant-linux-arm64.tar.gz
+tar xzf phone-mirror.tar.gz
+cd phone-mirror-linux
+sudo bash install.sh          # 自动安装 adb + scrcpy 依赖
+```
+
+**用法**:
+
+```bash
+./phone-mirror.sh list                      # 列出设备
+./phone-mirror.sh usb                       # USB 投屏（插线后在手机上允许 USB 调试）
+./phone-mirror.sh pair 192.168.1.5:39429 123456   # 无线配对（手机「无线调试」界面显示的 IP:端口 + 6位配对码）
+./phone-mirror.sh connect 192.168.1.5:39429       # 连接已配对设备并投屏
+```
+
+可选环境变量：`BORDERLESS=1`（无边框窗口）、`WINDOW_WIDTH=1080`（限制分辨率）、`TITLE=手机`（窗口标题）。
+
+> 注：scrcpy 会在桌面打开投屏窗口，窗口可自由拖动/缩放，鼠标键盘直接反控手机；音频与画面同步输出。
 
 ## 🔨 Build from source
 

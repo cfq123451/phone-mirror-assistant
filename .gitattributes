@@ -1,0 +1,4 @@
+# 保证脚本在 Windows 检出时也保持 LF 换行（bash 脚本 CRLF 会报错）
+*.sh text eol=lf
+*.yml text eol=lf
+*.bat text eol=crlf

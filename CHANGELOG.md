@@ -2,6 +2,17 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [2.2.0] - 2026-10-18
+
+### Added
+- **Linux 命令行版**（`linux/phone-mirror.sh`）：支持 ARM64 / x86_64，功能对齐 Windows 版核心
+  - `usb`：USB 投屏（含未授权等待、常见问题提示）
+  - `pair` / `connect`：无线配对与连接投屏
+  - `list` / `disconnect` / `help`
+  - 音频、鼠标键盘反向控制默认开启；可选无边框窗口、分辨率限制、自定义标题
+- `linux/install.sh` 一键安装依赖（apt 安装 adb + scrcpy，适配树莓派 OS / Debian / Ubuntu）
+- GitHub Actions 新增 `build-linux.yml`：使用原生 ARM64 runner（ubuntu-24.04-arm）进行语法检查、冒烟测试并自动打包 `phone-mirror-assistant-linux-arm64.tar.gz` 发布到 Release
+
 ## [2.1.0] - 2026-10-17
 
 ### Added
