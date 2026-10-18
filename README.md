@@ -9,7 +9,7 @@
 
 One-click phone screen mirroring for **Windows & Linux**, powered by [scrcpy](https://github.com/Genymobile/scrcpy). Plug in a USB cable or pair wirelessly — the app auto-detects your phone and mirrors it with audio and reverse control. **No app needs to be installed on your phone.**
 
-> This project is initiated by **@cfq123451**, with **Doubao AI assistant** co-developing the design, code and documentation.
+> This project is initiated by **@cfq123451**
 
 ## ✨ Features
 
