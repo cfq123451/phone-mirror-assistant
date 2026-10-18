@@ -1,113 +1,114 @@
 # Phone Mirror Assistant · 手机投屏助手
 
-**🌐 语言 / Language:** [**中文**](README.md) · [**English**](README.en.md)
+**🌐 Language:** [**English**](README.md) · [**中文**](README.zh.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20(ARM64)-blue)]()
-[![Framework](https://img.shields.io/badge/.NET-4.0%2B-purple)]()
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20(amd64%2Farm64)-blue)]()
+[![GUI](https://img.shields.io/badge/GUI-WinForms%20%7C%20PySide6-purple)]()
 [![scrcpy](https://img.shields.io/badge/scrcpy-4.1-orange)](https://github.com/Genymobile/scrcpy)
 
-A USB-first, phone screen mirroring tool for Windows, powered by [scrcpy](https://github.com/Genymobile/scrcpy).
-基于 scrcpy 的 Windows 手机投屏工具：**插上数据线自动识别并投屏**，无线调试作为备用方案；自带深色主界面与系统托盘，无需在手机上安装任何应用。
+One-click phone screen mirroring for **Windows & Linux**, powered by [scrcpy](https://github.com/Genymobile/scrcpy). Plug in a USB cable or pair wirelessly — the app auto-detects your phone and mirrors it with audio and reverse control. **No app needs to be installed on your phone.**
 
-> 本项目由 **@cfq123451** 发起，**豆包（Doubao）AI 助手参与设计、开发与文档编写**。
+> This project is initiated by **@cfq123451**, with **Doubao AI assistant** co-developing the design, code and documentation.
 
 ## ✨ Features
 
-- **USB-first auto-connect** —— 数据线插上并授权后自动识别设备、自动投屏；无线调试可作为回退（连接方式：`自动 / 仅 USB / 仅无线`）
-- **Main window UI** —— 启动即显示深色圆角主界面：动态设备列表（USB/无线自动识别、连接方式徽章、行内一键投屏）、无线配对/USB 连接引导、一键开始/停止
-- **System tray** —— 关闭窗口驻留托盘，右键菜单可快速操作；单实例保护
-- **Reverse control** —— 鼠标/键盘反控手机，中文输入可用（`--keyboard=uhid`，支持手机 IME）
-- **No phone app required** —— 手机只需开启「USB 调试」/「无线调试」
-- **Portable** —— 绿色单目录，双击即用，无需安装
-- **Linux CLI (ARM64)** —— 提供 Linux 命令行版 `phone-mirror.sh`，支持 USB/无线投屏、音频与反向控制，适用于树莓派 / ARM 盒子等设备
+- **USB / wireless auto-detect** — Dynamic device list with connection-type badges (USB / Wi-Fi); the same phone shown via both connections is deduplicated automatically
+- **Wireless pairing wizard** — Enter the IP / port / 6-digit pairing code shown on your phone; `adb pair` runs automatically in the background
+- **USB connection wizard** — Detects your USB device and asks for confirmation; shows three troubleshooting hints when no cable is detected
+- **One-click mirroring** — Start / stop from the main window or the tray; each device row has its own "Mirror" button, multiple devices can mirror at the same time
+- **Audio + reverse control** — Sound and screen output together; control your phone with mouse & keyboard, Chinese input works (`--keyboard=uhid`)
+- **System tray** — Closing the window keeps the app in the tray with a right-click quick menu
+- **Same experience on Windows and Linux** — A graphical UI on both platforms; install like any normal app
+- **No phone app required** — Just enable "USB debugging" / "Wireless debugging" on the phone
 
 ## 📸 Screenshots
 
-| 主界面 Main Window | 无线配对 Wireless Pair |
+| Main Window | Wireless Pair |
 | --- | --- |
 | ![main](docs/screenshots/main-window.png) | ![pair](docs/screenshots/pair-dialog.png) |
 
+## 📦 Downloads (v2.2.1)
+
+All installers live in **one** [Release](https://github.com/cfq123451/phone-mirror-assistant/releases). Pick the one for your platform:
+
+| Platform | Package | Install |
+| --- | --- | --- |
+| Windows 10/11 (64-bit) | `phone-mirror-assistant-windows-64-v2.2.1.exe` | Run the Setup program; desktop & Start-menu shortcuts are created automatically |
+| Debian / Ubuntu / Raspberry Pi OS (x86_64) | `phone-mirror-assistant_2.2.1-1_amd64.deb` | `sudo apt install -y ./phone-mirror-assistant_2.2.1-1_amd64.deb` |
+| Debian / Ubuntu / Raspberry Pi OS (ARM64) | `phone-mirror-assistant_2.2.1-1_arm64.deb` | `sudo apt install -y ./phone-mirror-assistant_2.2.1-1_arm64.deb` |
+
+The .deb packages pull in their dependencies automatically (`python3-pyside6`, `adb`, `scrcpy`). After installing, launch **Phone Mirror Assistant** from your app menu — no terminal needed.
+
 ## 🚀 Quick Start
 
-1. 下载最新 [Release](https://github.com/cfq123451/phone-mirror-assistant/releases) 的 `手机投屏助手-vX.Y.Z.zip`，解压（已内置 scrcpy 运行时）
-2. 手机：设置 → 关于手机 → 连点「版本号」7 次开启开发者模式 → 打开「USB 调试」或 「无线调试」
-3. **USB 投屏**：数据线连接电脑（机箱后置 USB 口），手机上点「允许 USB 调试」，主界面点「USB 连接」自动识别并投屏
-4. **无线投屏**：手机打开「无线调试」→「使用配对码配对设备」，主界面点「无线配对」，填入手机上显示的 IP/端口/6 位配对码，确认后自动配对并投屏
-   | ![main](docs/screenshots/phone-wlan.jpg) | | ![main](docs/screenshots/pair-dialog.png) |
-5. 双击 `手机投屏.exe` —— 自动识别设备并开始投屏
+1. Download and install the package for your platform from the [Releases](https://github.com/cfq123451/phone-mirror-assistant/releases) page (scrcpy runtime is bundled with the Windows installer; on Linux it is installed automatically as a dependency)
+2. On your phone: Settings → About phone → tap "Build number" 7 times to enable Developer Mode → turn on "USB debugging" or "Wireless debugging"
+3. **USB mirroring:** Connect the phone to the PC with a data cable (use a rear USB port on desktops), tap "Allow USB debugging" on the phone, then click **USB 连接** in the main window to auto-detect and mirror
+4. **Wireless mirroring:** On the phone open "Wireless debugging" → "Pair device with pairing code", click **无线配对** in the main window, enter the IP / port / 6-digit code shown on the phone, confirm — pairing and mirroring happen automatically
 
-> 注意：电脑连手机热点时多数机型会拒绝「无线调试」，此时 USB 是最稳的方案。
-
-## 🐧 Linux 版本（ARM64 / x86_64 命令行版）
-
-Windows 版为图形界面；Linux 版为**命令行工具**（同一套 scrcpy 引擎，功能对齐：USB/无线投屏、音频、鼠标键盘反向控制）。
-
-**安装**（Debian/Ubuntu/树莓派 OS，一行搞定）:
-
-```bash
-curl -L -o phone-mirror.tar.gz https://github.com/cfq123451/phone-mirror-assistant/releases/latest/download/phone-mirror-assistant-linux-arm64.tar.gz
-tar xzf phone-mirror.tar.gz
-cd phone-mirror-linux
-sudo bash install.sh          # 自动安装 adb + scrcpy 依赖
-```
-
-**用法**:
-
-```bash
-./phone-mirror.sh list                      # 列出设备
-./phone-mirror.sh usb                       # USB 投屏（插线后在手机上允许 USB 调试）
-./phone-mirror.sh pair 192.168.1.5:39429 123456   # 无线配对（手机「无线调试」界面显示的 IP:端口 + 6位配对码）
-./phone-mirror.sh connect 192.168.1.5:39429       # 连接已配对设备并投屏
-```
-
-可选环境变量：`BORDERLESS=1`（无边框窗口）、`WINDOW_WIDTH=1080`（限制分辨率）、`TITLE=手机`（窗口标题）。
-
-> 注：scrcpy 会在桌面打开投屏窗口，窗口可自由拖动/缩放，鼠标键盘直接反控手机；音频与画面同步输出。
-
-## 🔨 Build from source
-
-**Requirements:** Windows 10/11 · .NET Framework 4.0+（系统自带）· PowerShell 5+
-
-```powershell
-# 可选：重新生成图标（assets/手机投屏.ico）
-.\scripts\make-icon.ps1
-
-# 编译并组装出可运行的 dist\（若缺 scrcpy 会自动下载）
-.\scripts\build.ps1
-```
-
-产物 `dist\` 目录可直接运行。GitHub Actions 会在每次推送/打标签时自动构建并上传 `dist` 产物。
+> Note: When the PC is connected to the phone's hotspot, most phones refuse "Wireless debugging" — USB is the most reliable option in that case.
 
 ## 📖 Usage
 
-- **开始/停止投屏**：主界面一键控制；启动时若检测到设备会自动投屏（`auto_start`）
-- **窗口参数**：宽度 300~1200、置顶、无边框
-- **设备列表**：自动识别 USB 与无线设备（连接方式徽章区分），同一台设备 USB/无线同时在线时自动去重；每行右侧「投屏」按钮一键投屏，多设备可同时投屏互不影响
-- **无线配对**：主界面「无线配对」按钮 → 填写手机弹窗中的 IP/端口/6 位配对码 → 后台自动 `adb pair` 配对并投屏
-- **USB 连接**：主界面「USB 连接」按钮 → 自动检测 USB 设备并提示确认投屏；未插线时给出三条排查提示
-- **托盘**：关闭窗口 = 驻留托盘；右键托盘 → 显示主界面 / 开始 / 停止 / 配置手机键盘布局 / 退出
-- **反向打字不出字**：点「配置手机键盘布局」→ 手机端首次选择 `English(US)`，之后中文输入正常
+- **Start / stop mirroring** — One-click control from the main window; auto-mirrors when a device is detected at startup (`auto_start`)
+- **Window options** — width 300–1440, always-on-top, borderless
+- **Device list** — auto-detects USB & wireless devices (connection-type badges), deduplicates the same phone shown via both connections; each row has its own "Mirror" button
+- **Wireless pairing** — click **无线配对** → enter the IP / port / 6-digit code from the phone dialog → `adb pair` runs in the background, success/failure is reported in a popup
+- **USB connection** — click **USB 连接** → detects the USB device and asks "Connected to XXX. Start mirroring?"; shows three troubleshooting hints when no cable is detected
+- **Tray** — closing the window keeps the app in the tray; right-click the tray icon → show main window / start / stop / wireless pair / exit
+- **Chinese typing not working** — click **配置手机键盘布局** → on the phone select `English(US)` the first time, then Chinese input works
 
-## ⚙️ Configuration (`config.ini`)
+## 🔨 Build from source
 
-见 [config.example.ini](config.example.ini)：`mode`(auto/usb/wifi)、`conn_addr`、`window_width`、`always_on_top`、`borderless`、`auto_start`。程序退出时自动写回。
+### Windows
+
+**Requirements:** Windows 10/11 · .NET Framework 4.0+ (built-in) · PowerShell 5+
+
+```powershell
+# Optional: regenerate the icon (assets/手机投屏.ico)
+.\scripts\make-icon.ps1
+
+# Compile and assemble a runnable dist\ (auto-downloads scrcpy if missing)
+.\scripts\build.ps1
+```
+
+The resulting `dist\` folder is directly runnable. The installer (`phone-mirror-assistant-windows-64-*.exe`) is built with Inno Setup from `phone-mirror-assistant.iss`.
+
+### Linux (GUI, PySide6)
+
+Source: [`linux-gui/`](linux-gui/) — a full graphical app (device list, pairing dialog, USB wizard, tray, config file at `~/.config/phone-mirror-assistant/config.ini`).
+
+```bash
+# Build both .deb packages locally
+cd linux-gui
+bash build_deb.sh all        # outputs dist/phone-mirror-assistant_2.2.1-1_{amd64,arm64}.deb
+```
+
+GitHub Actions (`build-linux-gui.yml`) builds and uploads both architectures automatically on every tag.
+
+## ⚙️ Configuration
+
+Windows: `config.ini` next to the executable. Linux: `~/.config/phone-mirror-assistant/config.ini`.
+
+See [config.example.ini](config.example.ini): `mode`(auto/usb/wifi), `conn_addr`, `window_width`, `always_on_top`, `borderless`, `auto_start`.
 
 ## 🛠 Troubleshooting
 
-| 问题 | 处理 |
+| Issue | Fix |
 | --- | --- |
-| 识别不到设备 | 换一根能传数据的线；USB 模式选「传输文件/MTP」；设备管理器有黄色感叹号用「驱动总裁」/厂商驱动装 `Android ADB Interface` |
-| 无线调试连不上 | 电脑连手机热点时多数手机拒绝无线调试 → 改用 USB |
-| 杀毒软件提示 | 程序未签名，首次运行点「允许/信任」即可 |
-| 投屏中途退出 | 确认手机端弹窗已点「始终允许」，再点「停止投屏」后重新「开始投屏」 |
+| Device not detected | Try a cable that supports data transfer; set USB mode to "File Transfer/MTP"; if Device Manager shows a yellow exclamation mark, install the `Android ADB Interface` driver (vendor driver or "Driver Booster") |
+| Wireless debugging fails | If the PC is on the phone's hotspot, most phones refuse wireless debugging → use USB instead |
+| Antivirus warning | The program is unsigned — click "Allow/Trust" on first run |
+| Mirroring exits mid-session | Make sure you tapped "Always allow" on the phone dialog, then click "Stop" and "Start" again |
+| Linux: buttons not found | Verify the app menu entry "Phone Mirror Assistant" exists after install, or run `phone-mirror-assistant` in a terminal to see errors |
 
 ## 📄 License
 
-[Apache-2.0](LICENSE)。第三方组件与许可见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+[Apache-2.0](LICENSE). Third-party components and licenses: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## 🙏 Credits
 
-- **发起 & 开发者**：[@cfq123451](https://github.com/cfq123451)
-- **协作开发 / 文档 / 设计**：豆包（Doubao）AI 助手
-- **核心投屏引擎**：[scrcpy](https://github.com/Genymobile/scrcpy) (Apache-2.0)
+- **Initiator & developer:** [@cfq123451](https://github.com/cfq123451)
+- **Co-development / docs / design:** Doubao AI assistant
+- **Core mirroring engine:** [scrcpy](https://github.com/Genymobile/scrcpy) (Apache-2.0)
