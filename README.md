@@ -1,5 +1,7 @@
 # Phone Mirror Assistant · 手机投屏助手
 
+**🌐 语言 / Language:** [**中文**](README.md) · [**English**](README.en.md)
+
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20(ARM64)-blue)]()
 [![Framework](https://img.shields.io/badge/.NET-4.0%2B-purple)]()
