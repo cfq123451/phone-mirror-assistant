@@ -33,15 +33,25 @@ from PySide6.QtWidgets import (
 
 APP_NAME = "手机投屏助手"
 APP_EN = "Phone Mirror Assistant"
-VERSION = "2.2.1"
+VERSION = "2.2.2"
 SUBTITLE = "无线 / USB 一键投屏"
 
 BASE_DIR = Path(__file__).resolve().parent
-CONFIG_DIR = Path.home() / ".config" / "phone-mirror-assistant"
+if sys.platform == "darwin":
+    CONFIG_DIR = Path.home() / "Library" / "Application Support" / "phone-mirror-assistant"
+else:
+    CONFIG_DIR = Path.home() / ".config" / "phone-mirror-assistant"
 CONFIG_PATH = CONFIG_DIR / "config.ini"
 
 ADB = shutil.which("adb") or "adb"
 SCRCPY = shutil.which("scrcpy") or "scrcpy"
+
+
+def deps_hint():
+    """按平台给出依赖安装提示"""
+    if sys.platform == "darwin":
+        return "未找到 scrcpy / adb，请先安装依赖：\nbrew install scrcpy android-platform-tools"
+    return "未找到 scrcpy，请先安装依赖：\nsudo apt install adb scrcpy"
 
 DARK_QSS = """
 QMainWindow { background: #1e222a; }
@@ -567,8 +577,7 @@ class MainWindow(QMainWindow):
             self.status_lbl.setText(f"正在投屏：{serial}")
             self.tray.showMessage(APP_NAME, f"已开始投屏 {serial}", QSystemTrayIcon.Information, 2000)
         except FileNotFoundError:
-            QMessageBox.critical(self, "缺少 scrcpy",
-                "未找到 scrcpy，请先安装依赖：\nsudo apt install adb scrcpy")
+            QMessageBox.critical(self, "缺少 scrcpy", deps_hint())
 
     def start_mirror_all(self):
         if not self._devices:
