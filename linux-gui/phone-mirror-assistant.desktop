@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=手机投屏助手
+Name[en]=Phone Mirror Assistant
+GenericName=Phone Mirror
+Comment=无线 / USB 一键投屏
+Comment[en]=Wireless / USB one-click phone mirroring
+Exec=/usr/bin/phone-mirror-assistant
+Icon=phone-mirror-assistant
+Terminal=false
+Categories=Utility;Network;
+Keywords=scrcpy;adb;mirror;phone;投屏;

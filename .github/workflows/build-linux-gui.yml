@@ -1,0 +1,45 @@
+name: Build Linux GUI
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build-deb-amd64:
+    name: Build deb (amd64)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 打包 amd64 deb
+        run: |
+          chmod +x linux-gui/build_deb.sh
+          bash linux-gui/build_deb.sh amd64
+          ls -lh linux-gui/dist/
+
+      - name: 上传到 Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: linux-gui/dist/phone-mirror-assistant_*_amd64.deb
+
+  build-deb-arm64:
+    name: Build deb (arm64)
+    runs-on: ubuntu-24.04-arm   # 原生 ARM64 环境
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 打包 arm64 deb
+        run: |
+          chmod +x linux-gui/build_deb.sh
+          bash linux-gui/build_deb.sh arm64
+          ls -lh linux-gui/dist/
+
+      - name: 上传到 Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: linux-gui/dist/phone-mirror-assistant_*_arm64.deb
