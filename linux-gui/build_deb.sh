@@ -7,7 +7,7 @@
 set -e
 cd "$(dirname "$0")"
 
-VERSION="2.2.1"
+VERSION="2.2.2"
 PKG="phone-mirror-assistant"
 ICON="icons/app.png"
 

@@ -1,45 +1,36 @@
-# 手机投屏助手 · Linux GUI 版
-
-基于 scrcpy / adb 的 Linux 图形界面手机投屏工具，操作逻辑与 Windows 版一致。
-
-## 安装
+# 鎵嬫満鎶曞睆鍔╂墜 路 Linux GUI 鐗?
+鍩轰簬 scrcpy / adb 鐨?Linux 鍥惧舰鐣岄潰鎵嬫満鎶曞睆宸ュ叿锛屾搷浣滈€昏緫涓?Windows 鐗堜竴鑷淬€?
+## 瀹夎
 
 ```bash
 # amd64 (x86_64)
-sudo apt install -y ./phone-mirror-assistant_2.2.1-1_amd64.deb
+sudo apt install -y ./phone-mirror-assistant_2.2.2-1_amd64.deb
 
-# arm64 (树莓派 / ARM 盒子 / 银河麒麟等)
-sudo apt install -y ./phone-mirror-assistant_2.2.1-1_arm64.deb
+# arm64 (鏍戣帗娲?/ ARM 鐩掑瓙 / 閾舵渤楹掗簾绛?
+sudo apt install -y ./phone-mirror-assistant_2.2.2-1_arm64.deb
 ```
 
-依赖（自动安装）：`python3-pyside6 adb scrcpy`（需 Debian 12+ / Ubuntu 22.04+ / 树莓派 OS）。
+渚濊禆锛堣嚜鍔ㄥ畨瑁咃級锛歚python3-pyside6 adb scrcpy`锛堥渶 Debian 12+ / Ubuntu 22.04+ / 鏍戣帗娲?OS锛夈€?
+瀹夎鍚庝粠搴旂敤鑿滃崟鐐瑰嚮銆屾墜鏈烘姇灞忓姪鎵嬨€嶅惎鍔紝鎴栫粓绔繍琛?`phone-mirror-assistant`銆?
+## 浣跨敤
 
-安装后从应用菜单点击「手机投屏助手」启动，或终端运行 `phone-mirror-assistant`。
-
-## 使用
-
-- **设备列表**：自动识别 USB / 无线设备（连接方式徽章区分），同一台设备同时在线自动去重；每行「投屏」按钮一键投屏
-- **无线配对**：点「无线配对」→ 填手机上显示的 IP / 端口 / 6 位配对码 → 后台自动 `adb pair`
-- **USB 连接**：点「USB 连接」→ 未插线给出三条排查提示；已连接弹出「连接到 xxx 成功，是否确认投屏？」
-- **开始 / 停止投屏**：主界面一键控制；启动时检测到设备自动投屏
-- **窗口设置**：窗口宽度（300~1440）、置顶、无边框
-- **托盘**：关闭窗口驻留系统托盘，右键可快速操作
-- **配置**：`~/.config/phone-mirror-assistant/config.ini`（首次运行自动生成）
-- **中文输入**：首次在手机输入法里选 `English(US)`，之后电脑打字中文正常
-
-## 打包
+- **璁惧鍒楄〃**锛氳嚜鍔ㄨ瘑鍒?USB / 鏃犵嚎璁惧锛堣繛鎺ユ柟寮忓窘绔犲尯鍒嗭級锛屽悓涓€鍙拌澶囧悓鏃跺湪绾胯嚜鍔ㄥ幓閲嶏紱姣忚銆屾姇灞忋€嶆寜閽竴閿姇灞?- **鏃犵嚎閰嶅**锛氱偣銆屾棤绾块厤瀵广€嶁啋 濉墜鏈轰笂鏄剧ず鐨?IP / 绔彛 / 6 浣嶉厤瀵圭爜 鈫?鍚庡彴鑷姩 `adb pair`
+- **USB 杩炴帴**锛氱偣銆孶SB 杩炴帴銆嶁啋 鏈彃绾跨粰鍑轰笁鏉℃帓鏌ユ彁绀猴紱宸茶繛鎺ュ脊鍑恒€岃繛鎺ュ埌 xxx 鎴愬姛锛屾槸鍚︾‘璁ゆ姇灞忥紵銆?- **寮€濮?/ 鍋滄鎶曞睆**锛氫富鐣岄潰涓€閿帶鍒讹紱鍚姩鏃舵娴嬪埌璁惧鑷姩鎶曞睆
+- **绐楀彛璁剧疆**锛氱獥鍙ｅ搴︼紙300~1440锛夈€佺疆椤躲€佹棤杈规
+- **鎵樼洏**锛氬叧闂獥鍙ｉ┗鐣欑郴缁熸墭鐩橈紝鍙抽敭鍙揩閫熸搷浣?- **閰嶇疆**锛歚~/.config/phone-mirror-assistant/config.ini`锛堥娆¤繍琛岃嚜鍔ㄧ敓鎴愶級
+- **涓枃杈撳叆**锛氶娆″湪鎵嬫満杈撳叆娉曢噷閫?`English(US)`锛屼箣鍚庣數鑴戞墦瀛椾腑鏂囨甯?
+## 鎵撳寘
 
 ```bash
-bash build_deb.sh all        # 生成 amd64 + arm64 两个 deb 到 dist/
-bash build_deb.sh amd64      # 只打 amd64
-bash build_deb.sh arm64      # 只打 arm64
+bash build_deb.sh all        # 鐢熸垚 amd64 + arm64 涓や釜 deb 鍒?dist/
+bash build_deb.sh amd64      # 鍙墦 amd64
+bash build_deb.sh arm64      # 鍙墦 arm64
 ```
 
-## 开发运行
-
+## 寮€鍙戣繍琛?
 ```bash
-pip install PySide6          # 或 apt install python3-pyside6
+pip install PySide6          # 鎴?apt install python3-pyside6
 python3 phone-mirror-gui.py
 ```
 
-需要系统已安装 `adb` 与 `scrcpy`。
+闇€瑕佺郴缁熷凡瀹夎 `adb` 涓?`scrcpy`銆?
